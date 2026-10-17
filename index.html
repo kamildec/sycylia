@@ -260,6 +260,9 @@ table.compare{border-collapse:collapse;width:100%;min-width:860px;font-size:.85r
   const base = L.layerGroup().addTo(map);
   const groups = {spot: L.layerGroup().addTo(map), food: L.layerGroup().addTo(map)};
   let state = null;
+  // Programmatic scrolls (scenario switch, day chips) must not let the scroll-follow observer pick a day.
+  let quietUntil = 0;
+  const quiet = () => { quietUntil = performance.now() + 1500; };
 
   function draw(sid){
     base.clearLayers(); groups.spot.clearLayers(); groups.food.clearLayers();
@@ -310,6 +313,7 @@ table.compare{border-collapse:collapse;width:100%;min-width:860px;font-size:.85r
     document.querySelectorAll('.scen').forEach(s => { s.hidden = s.dataset.scen !== sid; });
     const idx = [...document.querySelectorAll('.th-pick')].findIndex(b => b.dataset.scen === sid) + 2;
     document.querySelectorAll('.compare tr').forEach(tr => [...tr.children].forEach((c, i) => c.classList.toggle('on', i + 1 === idx)));
+    quiet();
     draw(sid); showDay('all', false);
     if (push) { try { history.replaceState(null, '', '#' + sid); } catch (err) { /* file:// or sandbox */ } }
     try { localStorage.setItem('scen', sid); } catch (err) { /* storage unavailable */ }
@@ -320,6 +324,7 @@ table.compare{border-collapse:collapse;width:100%;min-width:860px;font-size:.85r
     move(b => document.querySelector('.mapcol').scrollIntoView({behavior: b}));
   }));
   document.querySelectorAll('.scen .chip').forEach(c => c.addEventListener('click', () => {
+    quiet();
     showDay(c.dataset.day, true);
     if (c.dataset.day !== 'all') move(b => document.getElementById(state.sid + '-day-' + c.dataset.day).scrollIntoView({behavior: b}));
     else move(b => document.querySelector('.scen[data-scen="' + state.sid + '"]').scrollIntoView({behavior: b}));
@@ -354,7 +359,7 @@ table.compare{border-collapse:collapse;width:100%;min-width:860px;font-size:.85r
   window.addEventListener('scroll', () => { scrolled = window.scrollY > 400; }, {passive: true});
   if ('IntersectionObserver' in window){
     const io = new IntersectionObserver(entries => {
-      if (!scrolled || !wide() || !state) return;
+      if (!scrolled || !wide() || !state || performance.now() < quietUntil) return;
       entries.forEach(en => {
         if (!en.isIntersecting || en.target.closest('.scen').hidden) return;
         const d = en.target.dataset.day;
