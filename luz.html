@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sycylia na luzie</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f3f1ef;
+  --surface:#fbfaf9;
+  --fg:#22201f;
+  --muted:#6a625d;
+  --line:#ddd6d1;
+  --accent:#d9480f;
+  --accent-soft:#fbe3d6;
+  --sea:#1d5f8a;
+  --sea-soft:#dcebf4;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#191716;--surface:#221f1e;--fg:#efeae6;--muted:#a89e98;--line:#38322f;
+  --accent:#ff7a3d;--accent-soft:#3a2418;--sea:#7cb8e0;--sea-soft:#1a2b38;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#191716;--surface:#221f1e;--fg:#efeae6;--muted:#a89e98;--line:#38322f;
+  --accent:#ff7a3d;--accent-soft:#3a2418;--sea:#7cb8e0;--sea-soft:#1a2b38;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:28px 56px}
+a{color:var(--sea)}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(2.2rem,8vw,3.2rem)}
+h2{font-size:1.6rem}
+h3{font-size:1.2rem}
+p{margin:0}
+ul{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:6px}
+li{max-width:66ch}
+b{font-weight:600}
+.eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.lead{color:var(--muted);font-size:1.05rem;max-width:62ch}
+section{display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-direction:column;gap:14px}
+.topnav{font-size:.9rem}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.82rem;padding:3px 10px;border-radius:999px;background:var(--sea-soft);color:var(--fg);white-space:nowrap}
+.chip.hot{background:var(--accent-soft)}
+
+.flights{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px}
+.flight{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);display:flex;flex-direction:column;gap:2px;min-width:0}
+.flight .t{font-variant-numeric:tabular-nums;font-weight:600;font-size:1.05rem}
+.flight .s{color:var(--muted);font-size:.9rem}
+
+.nights{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:8px}
+.night{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);display:flex;flex-direction:column;gap:2px;min-width:0}
+.night .n{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.night .p{font-family:var(--display);font-size:1.15rem}
+.night .w{font-size:.85rem;color:var(--muted)}
+
+.days{display:flex;flex-direction:column}
+.day{display:grid;grid-template-columns:64px 1fr;gap:16px;padding-block:20px;border-top:1px solid var(--line)}
+.day:last-child{border-bottom:1px solid var(--line)}
+.rail{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.rail .dow{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rail .num{font-family:var(--display);font-size:1.7rem;line-height:1;font-variant-numeric:tabular-nums}
+.rail .mon{font-size:.8rem;color:var(--muted)}
+.body{display:flex;flex-direction:column;gap:10px;min-width:0}
+.day.key .num{color:var(--accent)}
+.note{font-size:.92rem;color:var(--muted);border-left:3px solid var(--accent);padding-left:12px}
+.sleep{font-size:.92rem;padding:8px 12px;border-radius:8px;background:var(--sea-soft)}
+.sleep b{font-weight:600}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.card{padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface);display:flex;flex-direction:column;gap:8px;min-width:0}
+.card .tag{font-size:.8rem;color:var(--muted)}
+.small{font-size:.88rem;color:var(--muted)}
+
+@media (max-width:420px){.day{grid-template-columns:52px 1fr;gap:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="topnav"><a href="./">← Wszystkie scenariusze</a> · <a href="plan.html">Praktyczne info</a></span>
+  <span class="eyebrow">5 osób · 3 miejsca noclegu · bez spiny</span>
+  <h1>Sycylia na luzie</h1>
+  <p class="lead">Każdy wieczór tam, gdzie się śpi: studencka Katania, Ortigia nad morzem i Taormina na koniec, z Etną i winnicą po drodze. Przejazdy krótkie, najdłuższy ok. 1 h. Auto od soboty, żeby w święto nie zależeć od autobusów.</p>
+  <div class="flights">
+    <div class="flight"><span class="s">Przylot · czw 29.10</span><span class="t">WAW 21:50 → CTA 00:40</span><span class="s">ląduje już w piątek w nocy</span></div>
+    <div class="flight"><span class="s">Wylot · śr 4.11</span><span class="t">CTA 17:00 → WAW 19:50</span><span class="s">na lotnisku ok. 15:00</span></div>
+  </div>
+  <div class="chips">
+    <span class="chip">Woda ok. 21–23 °C</span>
+    <span class="chip">Zachód słońca ok. 17:00</span>
+    <span class="chip hot">1.11 święto: mało autobusów</span>
+  </div>
+</header>
+
+<section>
+  <span class="eyebrow">Noclegi</span>
+  <div class="nights">
+    <div class="night"><span class="n">29.10–31.10 · 2 noce</span><span class="p">Katania</span><span class="w">centrum, okolice Piazza Bellini</span></div>
+    <div class="night"><span class="n">31.10–2.11 · 2 noce</span><span class="p">Ortigia</span><span class="w">Siracusa, stare miasto na wyspie</span></div>
+    <div class="night"><span class="n">2.11–4.11 · 2 noce</span><span class="p">Taormina</span><span class="w">albo taniej Giardini Naxos lub Letojanni, 10 min</span></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Dzień po dniu</span>
+  <div class="days">
+
+    <article class="day">
+      <div class="rail"><span class="dow">Czw/Pt</span><span class="num">29</span><span class="mon">noc</span></div>
+      <div class="body">
+        <h3>Dolot i spać</h3>
+        <ul>
+          <li>Z lotniska do centrum ok. 15 min. W nocy zostaje taksówka; dla piątki z bagażami zamów van albo dwie taksówki.</li>
+          <li>Sprawdź, czy nocleg ma self check-in albo czy ktoś czeka po 1:00.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="day key">
+      <div class="rail"><span class="dow">Pt</span><span class="num">30</span><span class="mon">paź</span></div>
+      <div class="body">
+        <h3>Aklimatyzacja w Katanii</h3>
+        <div class="chips"><span class="chip hot">chill 10/10</span><span class="chip">pieszo</span></div>
+        <ul>
+          <li><b>Późne śniadanie:</b> granita z brioszką, lokalny klasyk.</li>
+          <li><b>La Pescheria</b>, targ rybny za katedrą. Działa do ok. południa.</li>
+          <li><b>Piazza Duomo</b> ze słoniem z lawy i widok z kopuły Badia di Sant'Agata (kilka euro).</li>
+          <li><b>Lunch z ręki:</b> arancini w Savii albo Spinelli przy Via Etnea. Potem sjesta.</li>
+          <li><b>Aperitivo</b> w okolicach Piazza Bellini i Teatro Massimo. Do spritza często są przekąski w cenie.</li>
+          <li>Kolacja: pasta alla Norma albo konina z grilla na Via Plebiscito.</li>
+        </ul>
+        <p class="sleep">Śpicie: <b>Katania</b>, druga noc</p>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="rail"><span class="dow">Sob</span><span class="num">31</span><span class="mon">paź</span></div>
+      <div class="body">
+        <h3>Przenosiny na Ortigię</h3>
+        <div class="chips"><span class="chip">auto od dziś</span><span class="chip">ok. 1 h jazdy</span><span class="chip">kąpiel</span></div>
+        <ul>
+          <li>Rano taksówką z bagażami na lotnisko (ok. 15 min) i odbiór auta. Wypożyczalnie na lotnisku działają też w weekend.</li>
+          <li>Autostradą do Siracusy, ok. 1 h. Ortigia to strefa ZTL, więc auto zostaw na parkingu Talete na skraju wyspy, a bagaże zanieś do noclegu.</li>
+          <li><b>Targ na Ortigii</b> do ok. 13:00 i kanapka z lokalnych serów i wędlin na lunch.</li>
+          <li>Kąpiel ze skał przy murach.</li>
+          <li><b>Wieczór na Ortigii:</b> zachód słońca nad portem, spritz na Piazza Duomo, kolacja w zaułkach. Halloween, więc w barach będzie gwarno.</li>
+        </ul>
+        <p class="sleep">Śpicie: <b>Ortigia</b></p>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="rail"><span class="dow">Nd</span><span class="num">1</span><span class="mon">lis</span></div>
+      <div class="body">
+        <h3>Noto, Vendicari i Marzamemi</h3>
+        <div class="chips"><span class="chip hot">plaża</span><span class="chip">wypad autem, powrót na noc</span></div>
+        <ul>
+          <li>Wszystkich Świętych: autobusów mało, ale wy macie auto. Bagaże zostają na Ortigii.</li>
+          <li><b>Noto</b>, 40 min: barokowe miasteczko z miodowego kamienia. Spacer główną ulicą, granita albo cannolo w kawiarni.</li>
+          <li><b>Rezerwat Vendicari</b>, 20 min dalej: plaża Calamosche, ok. 15 min pieszo od parkingu. Kąpiel i leżenie w zatoczce. Po drodze laguny, czasem flamingi.</li>
+          <li><b>Marzamemi</b>: mała rybacka wioska z placem nad wodą. Zachód słońca ok. 17:00 i aperitivo.</li>
+          <li>Ok. 1 h powrotu na Ortigię, wieczorem kolacja z rybą.</li>
+        </ul>
+        <p class="note">W święto część knajp w Noto i Marzamemi może być zamknięta albo pełna. Na lunch weźcie coś z piekarni z Ortigii.</p>
+        <p class="sleep">Śpicie: <b>Ortigia</b>, druga noc</p>
+      </div>
+    </article>
+
+    <article class="day key">
+      <div class="rail"><span class="dow">Pon</span><span class="num">2</span><span class="mon">lis</span></div>
+      <div class="body">
+        <h3>Etna</h3>
+        <div class="chips"><span class="chip">ok. 1,5 h jazdy</span><span class="chip">wulkan</span></div>
+        <ul>
+          <li>Rano poranny targ na Ortigii (od poniedziałku znowu działa), potem wyjazd.</li>
+          <li>Autostradą obok Katanii i przez Nicolosi pod <b>Rifugio Sapienza</b> (1900 m).</li>
+          <li><b>Kratery Silvestri:</b> spacer po krawędziach, za darmo. Opcjonalnie szlak Schiena dell'Asino nad Valle del Bove, ok. 1,5 h.</li>
+          <li>Po południu zjazd przez Zafferanę do Taorminy, ok. 1–1,5 h. Rozpakowanie do końca wyjazdu.</li>
+          <li><b>Wieczór na spokojnie:</b> kolacja i krótki spacer. Z Giardini Naxos do Taorminy podjedźcie taksówką, żeby kierowca też mógł się napić.</li>
+        </ul>
+        <p class="note">Na górze bywa 5–10 °C i mocno wieje, szczyt często jest w chmurze po południu. Kurtka, długie spodnie, buty na kamienie. Dzień wcześniej sprawdźcie komunikaty INGV o aktywności wulkanu.</p>
+        <p class="sleep">Śpicie: <b>Taormina</b> albo Giardini Naxos / Letojanni, pierwsza z dwóch nocy</p>
+      </div>
+    </article>
+
+    <article class="day key">
+      <div class="rail"><span class="dow">Wt</span><span class="num">3</span><span class="mon">lis</span></div>
+      <div class="body">
+        <h3>Winnica i Taormina</h3>
+        <div class="chips"><span class="chip hot">wine tasting</span><span class="chip">ok. 30 min od noclegu</span></div>
+        <ul>
+          <li>Spokojny poranek. Opłaca się Castelmola, 5 min nad Taorminą, z widokiem na zatokę i Etnę.</li>
+          <li><b>Degustacja ok. 12:00</b> z lunchem na zboczu Etny i powrót do tego samego noclegu. Opcje niżej.</li>
+          <li>Po południu sjesta albo zejście do Isola Bella, jeśli słońce. Auto do Taorminy zostawiajcie na parkingu Lumbi albo Porta Catania, do centrum się nie wjeżdża.</li>
+          <li><b>Wieczór w Taorminie:</b> zachód słońca z Piazza IX Aprile, spacer Corso Umberto, kolacja. Taormina jest droga, więc aperitivo można zrobić na tarasie noclegu.</li>
+        </ul>
+        <p class="note">Jedna osoba jest kierowcą i nie pije przy degustacji. Limit we Włoszech to 0,5 ‰, a dla kierowców z prawem jazdy krótszym niż 3 lata 0,0 ‰. Wieczorem auto zostaje na parkingu, a piją wszyscy.</p>
+        <p class="sleep">Śpicie: <b>Taormina</b> albo Giardini Naxos / Letojanni, druga noc</p>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="rail"><span class="dow">Śr</span><span class="num">4</span><span class="mon">lis</span></div>
+      <div class="body">
+        <h3>Isola Bella i wylot</h3>
+        <ul>
+          <li>Rano <b>Isola Bella</b> (jeśli nie było jej we wtorek): zejście schodami do zatoki, ostatnia kąpiel.</li>
+          <li>Granita w Taorminie, pamiątki: krem pistacjowy z Bronte, wino z wczoraj.</li>
+          <li>Wyjazd ok. 13:45. Autostradą do lotniska ok. 1 h, oddanie auta i bagaże ok. 15:00.</li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Winnice</span>
+  <h2>Gdzie na degustację</h2>
+  <div class="cols">
+    <div class="card"><h3>Murgo</h3><span class="tag">Santa Venerina · ok. 30 min od Taorminy</span><p>Rodzinna winnica, jedna z tańszych degustacji. Dobre wina musujące.</p></div>
+    <div class="card"><h3>Gambino</h3><span class="tag">Linguaglossa · ok. 30 min od Taorminy</span><p>Degustacje z panoramą na Etnę, popularne i dobrze zorganizowane.</p></div>
+  </div>
+  <p class="small">Degustacja z 3–5 winami i przekąskami to zwykle ok. 20–40 € od osoby. Ceny sprawdź na stronach winnic. Rezerwuj mailem kilka dni wcześniej. Spróbuj czerwonego Nerello Mascalese i białego Carricante.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Po studencku</span>
+  <h2>Żeby wyszło tanio</h2>
+  <ul>
+    <li>Dla piątki mieszkanie albo duży apartament zwykle wychodzi taniej na osobę niż hostel.</li>
+    <li>Na Ortigii i w Taorminie noclegi są droższe. Tańsze alternatywy: Siracusa tuż przy moście na wyspę i Giardini Naxos.</li>
+    <li>Auto od soboty do środy, podzielone na pięć. Odbiór i zwrot na lotnisku w Katanii, więc bez dopłaty za zwrot w innym miejscu.</li>
+    <li>Lunch z piekarni i street food. Spritz najtaniej na placach w Katanii, gdzie piją studenci.</li>
+  </ul>
+</section>
+
+<section>
+  <span class="eyebrow">Plan B</span>
+  <h2>Gdy pada albo zmieniacie zdanie</h2>
+  <ul>
+    <li><b>Deszcz w poniedziałek:</b> zamieńcie Etnę z wtorkową winnicą, a na wulkan wjedźcie we wtorek rano. Prognozę sprawdź od ok. 25.10.</li>
+    <li><b>Bez auta w weekend:</b> w sobotę pociąg do Siracusy, a w niedzielę leniwy dzień na Ortigii. Auto odbierzcie dopiero w poniedziałek.</li>
+    <li><b>Tańszy i bardziej imprezowy wieczór po Etnie:</b> w poniedziałek nocleg w Katanii, a do Taorminy dopiero we wtorek po winnicy.</li>
+  </ul>
+</section>
+
+</div>
+</body>
+</html>
